@@ -37,6 +37,10 @@ def closest_point(all_points, new_point):
 
 
 def build_kd(points, depth=0):
+  '''
+  Partitions all the points to regions.
+  Returns a tree of regions
+  '''
   k = 2   # dimensions
 
   n = len(points)
