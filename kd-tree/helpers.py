@@ -48,4 +48,4 @@ def get_group_by_id(tree, group_id):
 
 svg_tree = parse_svg('./points.svg')
 [pivot] = get_point_by_id(svg_tree, 'pivot')
-points = get_group_by_id(svg_tree, 'points')
+all_points = get_group_by_id(svg_tree, 'points')

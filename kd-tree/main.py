@@ -1,5 +1,8 @@
 import math
-from helpers import points, pivot
+import pprint
+from helpers import all_points, pivot
+
+pp = pprint.PrettyPrinter(indent=2)
 
 def distance(point1, point2):
   '''
@@ -33,4 +36,21 @@ def closest_point(all_points, new_point):
   return best_known_point
 
 
-print(closest_point(points, pivot))
+def build_kd(points, depth=0):
+  k = 2   # dimensions
+
+  n = len(points)
+  if(n <= 0):
+    return None
+
+  partition = depth % k
+  sorted_points = sorted(points, key=lambda point: point[partition])
+
+  return {
+    'point': sorted_points[n//2], # middle, floored
+    'left': build_kd(sorted_points[:n//2], depth + 1),
+    'right': build_kd(sorted_points[n//2 + 1:], depth + 1)
+  }
+
+
+pp.pprint(build_kd(all_points))
